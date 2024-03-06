@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Dark sidebar */
+        .sidebar {
+            height: 100vh; 
+            width: 250px;
+            background-color: #333;
+            color: white;
+            position: fixed; 
+            padding-top: 20px; 
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        /* Different-colored boxes */
+        .count-box {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        .total-users-box {
+            background-color: #6a9dd4; 
+            height: 20vh;
+            width: 20vw;
+        }
+        .total-turfs-box {
+            background-color: #ffee00; 
+            height: 20vh;
+            width: 20vw;
+        }
+
+        .total-bookings-box {
+            background-color: #28a745; 
+            height: 20vh;
+            width: 20vw;
+        }
+
+        /* Manager table styling */
+        .merchants-table th,
+        .merchants-table td {
+            text-align: center;
+        }
+
+        .merchants-table th {
+            background-color: #343a40; /* Dark Gray */
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+       
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Add sidebar content, e.g., links to other pages, etc. -->
+        <ul>
+            <li><a href="#"><h1>Dashboard</h1></a></li>
+            
+            
+            <li><a href="{%url 'total_booking' %}">Bookings</a></li><br>
+            <li><a href="{%url 'viewMerchants' %}">Merchant</a></li><br><br>
+            <li><a href="{%url 'admin_signout' %}">Sign out</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Content for the main section -->
+        {% block content %}
+<h2 class="text-center">Admin Dashboard</h2>
+        <main id="main">
+            <div class="row">
+                <!-- Total Users Count Box -->
+                <div class="col-md-4">
+                    <div class="count-box total-turfs-box">
+                        <!-- <h2>Total Turf  Count: {{ total_turfs}}</h2> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="count-box total-users-box">
+                        <h2>Total Merchant Count: {{ total_Merchant }}</h2>
+                    </div>
+                </div>
+                <!-- Total Bookings Count Box -->
+                <div class="col-md-4">
+                    <div class="count-box total-bookings-box">
+                        <!-- <h2>Total Bookings Count: {{ total_bookings }}</h2> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- merchant List Section -->
+            <section id="merchant-list" class="merchant-list">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-header mt-5">
+                        <h3 class="mt-5">Merchant List</h3>
+                    </div>
+                    <div class="row gx-lg-0 gy-4">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered merchant-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Designation</th>
+                                        <th>Company Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for merchant in merchants %}
+                                    <tr>
+                                        <td>{{ merchant.user.first_name }}</td>
+                                        <td>{{ merchant.Designation }}</td>
+                                        <td>{{ merchant.Company_Name }}</td>
+                                        <td>{{ merchant.Phone_Number }}</td>
+                                        <td>{{ merchant.user.email }}</td>
+                                        <td>
+                                            {% if not merchant.user.is_active %}
+                                            <a href="{% url 'approveMerchant' merchant.user.id %}"
+                                                class="btn btn-success">Approve</a>
+                                            {% endif %}
+                                            <a href="{% url 'removeMerchant' merchant.user.id %}"
+                                                class="btn btn-danger m-2"
+                                                onclick="return confirm('Confirm removing this merchant?')">Remove</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS and additional scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

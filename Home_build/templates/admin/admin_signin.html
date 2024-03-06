@@ -11,34 +11,45 @@
         crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #faf8f5;
         }
 
         .login-container {
             max-width: 400px;
             margin: auto;
             margin-top: 100px;
+            background-color: ;
+        }
+        .btn{
+            background-color: rgb(0, 14, 8);
+            color: rgb(245, 185, 21);
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color:  rgb(245, 185, 21);
+            color: black;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container login-container p-3" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;">
+    <div class="container login-container p-3" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; background-color: rgb(238, 199, 24);">
         <h1 class="text-center mb-4">Admin Login</h1>
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label" style="text-align: center; color: black; font-size: 20px; font-weight: bold;">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label" style="text-align: center; color: black; font-size: 20px;  font-weight: bold;">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn  " style="background-color: rgb(4, 121, 72); color: aliceblue;">Sign in</button><br><br>
-                <p><a href="{%url 'index' %}" style="text-decoration: none; color: rgb(221, 99, 18);">Back to Home</a></p>
+                <button type="submit" class="btn" >Sign in</button><br><br>
+                <p><a href="{%url 'index' %}" style="text-decoration: none; color: rgb(14, 13, 13); font-weight: bold;">Back to Home</a></p>
             </div>
         </form>
     </div>
