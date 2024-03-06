@@ -1,0 +1,55 @@
+{%extends "index.html"%}
+{%load static%}
+{%block content%}
+      
+{% for message in messages %}
+    <div class="alert alert-success" role="alert" id="alertBox">
+        <h6>{{ message.message }}</h6>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+{% endfor %}
+{% if form.errors %}
+<div class="alert alert-danger col-md-6 mx-auto" >
+<strong>Error:</strong>
+{{ form.errors }}
+</div>
+{% endif %}
+<h3 class="text-center">user register</h3>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="container" style="margin-top: 10px;">
+    <div class="row justify-content-center align-items-center">
+        
+        <div class="col-lg-5">
+            <div class=" py-5 px-4 px-sm-5" style="border: 1px solid grey; height: 90vh;">
+                <form class="py-3" action="{%url 'register' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="text-center"> <!-- Center the form fields and labels -->
+                        {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}" class="label-tag">{{ field.label }}:</label><br>
+                            {{ field }}<br><br>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <button class="btn btn-dark btn-block border-0 py-2" type="submit" style="width: 250px; align-items: center; margin-left: 60px;">Register</button>
+                    </div><br>
+                    <p class="text-center">Already have an account? <a href="{% url 'user_login' %}" class="link">Login Here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var closeButtons = document.getElementsByClassName("closebtn");
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener("click", function() {
+            this.parentElement.style.display = "none";
+        });
+    }
+});
+</script>
+
+{%endblock%}
