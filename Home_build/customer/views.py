@@ -19,11 +19,6 @@ def service(request):
     return render(request,"service.html")
 
 
-
-def viewpage(request):
-    return render(request,"user/viewpage.html")
-
-
 def register(request):
     if request.method == "POST":
         form = UserAddForm(request.POST)
@@ -50,7 +45,7 @@ def user_login(request):
             request .session["username"]=username
             request .session["password"]=password
             login(request,user)
-            return redirect("viewpage")
+            return redirect("category")
         else:
             
             messages.info(request,"Username or Password Incorrect")
@@ -61,3 +56,38 @@ def signout(request):
     
     logout(request)
     return redirect('user_login')
+
+
+
+
+def category(request):
+    return render(request,'user/viewpage.html')
+
+
+
+
+
+# category selection
+
+Area_choices = (
+    ('con', 'con'),
+    ('electricals', 'electricals'),
+    ('plumbing', 'plumbing'),
+    ('interior', 'interior'),
+    ('paint', 'paint'),
+    ('courtyard', 'courtyard'),
+)
+
+
+# def location_view(request, loc_code):
+#     location_turfs = []
+#     context = {}  # Initialize context outside the loop
+
+#     for code, name in Area_choices:
+#         if code == loc_code:
+#             turfs = TurfList.objects.filter(Turf_area=code)
+#             location_turfs.append({'location_name': name, 'turfs': turfs})
+#             break
+
+#     context['location_turfs'] = location_turfs
+#     return render(request, 'location_turf.html', context)
