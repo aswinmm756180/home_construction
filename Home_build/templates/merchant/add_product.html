@@ -1,0 +1,125 @@
+{% extends "merchant/merchant_index.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+   .link {
+      font-weight: bold;
+      color: #333;
+  }
+
+  .link:hover {
+      color: rgb(37, 25, 25);
+      text-decoration: none;
+  }
+
+  /* Style for the fields */
+  .label-tag {
+      color: rgb(243, 160, 5);
+  }
+  .form-group {
+      margin-bottom: 15px;
+  }
+  .form-group label {
+      display: block;
+      font-weight: bold;
+  }
+  .form-group select,
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+      width: 100%;
+      border: 1px solid rgb(173, 173, 173);
+      padding: 8px;
+      border-radius: 5px;
+  }
+
+  .btn-submit {
+      max-width: 150px;
+      align-items: center;
+      margin-left: 140px;
+  }
+
+  /* Additional styling for the form container */
+  .form-container {
+      border-radius: 30px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+      /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
+      /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+  }
+
+  /* Additional styling for the image container */
+  .img-container {
+      border-radius: 30px;
+      height: 400px;
+      width: 400px;
+  }
+</style>
+
+{% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" style="position: fixed; z-index: 90; right: 100px; top: 10px"
+         role="alert">
+        <strong>{{ message }} !!!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-center align-items-center"
+                 style="height: 100vh; border-radius: 30px;">
+                <div class="container  p-5 form-container">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-12">
+                            <div class="py-4 px-4 px-sm-5">
+                                <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="text-center">
+                                      <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="{{ form.Product_name.id_for_label }}" class="label-tag">Product Name</label>
+                                            {{ form.Product_name }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                          <label for="{{ form.Product_caption.id_for_label }}" class="label-tag">Product Caption</label>
+                                          {{ form.Product_caption }}
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 form-group">
+                                          <label for="{{ form.Product_price.id_for_label }}" class="label-tag">Product Price</label>
+                                          {{ form.Product_price }}
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 form-group">
+                                          <label for="{{ form.Product_area.id_for_label }}" class="label-tag">Product area</label>
+                                          {{ form.Product_area }}
+                                      </div>
+                                      <div class="col-md-6 form-group">
+                                          <label for="{{ form.Product_image.id_for_label }}" class="label-tag">Product image</label>
+                                          {{ form.Product_image }}
+                                      </div>
+                                    </div><br> 
+
+                                        <button class="btn btn-dark btn-block border-0 py-2 mx-3 btn-submit" type="submit">Add Product</button>
+                                    </div><br>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<br>
+        <div class="col-md-6 mt-5 d-flex justify-content-center align-items-center img-container" >
+            <!-- Add your image here -->
+            <img src="{% static 'img/turfplay.jpg' %}" alt="Your Image" class="img-fluid " style="height: 400px; width: 300px; margin-top: 200px;">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

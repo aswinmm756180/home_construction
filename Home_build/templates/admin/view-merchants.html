@@ -76,17 +76,15 @@
         }
     </style>
 </head>
-
 <body>
-       
-    <!-- Sidebar -->
+           <!-- Sidebar -->
     <div class="sidebar">
         <!-- Add sidebar content, e.g., links to other pages, etc. -->
         <ul>
             <li><a href="#"><h1>Dashboard</h1></a></li>
             
             
-            <li><a href="{%url 'total_booking' %}">Bookings</a></li><br>
+            <li><a href="#">Bookings</a></li><br>
             <li><a href="{%url 'viewMerchants' %}">Merchant</a></li><br><br>
             <li><a href="{%url 'admin_signout' %}">Sign out</a></li>
             <!-- Add more links as needed -->
@@ -108,7 +106,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="count-box total-users-box">
-                        <h2>Total Merchant Count: {{ total_Merchant }}</h2>
+                        <h2>Total Merchant Count: {{ total_merchant }}</h2>
                     </div>
                 </div>
                 <!-- Total Bookings Count Box -->

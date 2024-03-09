@@ -1,12 +1,6 @@
 from django.forms import ModelForm
 from django.forms import TextInput,Textarea,NumberInput,DateInput
 from .models import MerchantProfile
-from django.forms import ModelForm
-from django.forms import TextInput,Textarea,NumberInput,DateInput
-from .models import MerchantProfile
-
-
-
 
 
 
@@ -22,4 +16,17 @@ class MerchantProfileForm(ModelForm):
             'Company_Name': Textarea(attrs={"class":"form-control","placeholder":"Enter  Your Educational Qualification"}),
         }
         
-        
+
+
+
+
+
+
+from django import forms
+from .models import ProductList
+
+
+class ProductDetailsForm(forms.ModelForm):
+    class Meta:
+        model = ProductList  
+        fields = '__all__'

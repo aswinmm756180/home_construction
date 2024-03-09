@@ -2,7 +2,32 @@
 {% load static %}
 {% block content %}
 
+<style>
+    .reg_btn{
+        background-color: black;
+        color: rgb(248, 175, 40);
+        border-radius: 5px;
+        margin-top: 15px;
+        height: 50px;
+        width: 270px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .reg_btn:hover{
+        background-color: rgb(248, 175, 40);
+        color: black;
+    }
 
+    .log_btn{
+        text-align: center; 
+        /* margin-left: 80px;  */
+        color: rgb(71, 71, 71);
+    }
+    .log_btn:hover{
+        color: rgb(238, 174, 12);
+    }
+</style>
+</style>
 
 
 
@@ -17,9 +42,21 @@
 </div>
 {% endfor %}
 
+{% for message in messages %}
+    <div class="alert alert-dark" role="alert" id="alertBox">
+        <h6>{{ message.message }}</h6>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+{% endfor %}
+{% if form.errors %}
+<div class="alert alert-danger">
+    <strong>Error:</strong>
+    {{ form.errors }}
+</div>
+{% endif %}
 <main id="main">
     <section id="contact" class="contact">
-        <div class="signup-container" data-aos="fade-up">
+        <div class="signup-container" data-aos="fade-up" style="width: 800px; margin: auto;  height: 1000px;">
             <div class="section-header">
                 <h3 class="text-center">Register As Merchant</h3>
             </div>
@@ -47,9 +84,9 @@
                 </div>
                 
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Register As a Merchant</button>
+                    <button type="submit" class="reg_btn" >Register As a Merchant</button>
                 </div>
-                <h5 class="text-end mt-4" style="color: rgb(50, 92, 7);"><a href="#" class="text-muted" >Sign in As Merchant</a></h5>
+                <h5 class="log_btn text-end mt-4" style="color: rgb(11, 12, 10); text-align: center;"><a href="{%url 'merchantsignin' %}" class="text-muted" >Sign in As Merchant</a></h5>
             </form>
         </div>
     </section>

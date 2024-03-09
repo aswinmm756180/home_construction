@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
-# from users_app.forms import UserAddForm
+from customer.forms import UserAddForm
 from .forms import MerchantProfileForm
 from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
-# from .models import TurfList
-# from .forms import TurfDetailsForm
-# from django.contrib.auth.decorators import login_required
+from .models import ProductList
+from .forms import ProductDetailsForm
+from django.contrib.auth.decorators import login_required
 # from datetime import timedelta
 # from users_app.models import Booking,Message
 
@@ -17,7 +17,9 @@ from django.contrib.auth import authenticate, login,logout
 
 
 
-
+def product_detail(request):
+    products=ProductList.objects.all().order_by("-Product_ID")
+    return render(request,"merchant/merchant_index.html",{"all_Product":products})
 
 
 
@@ -33,13 +35,14 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import MerchantProfileForm
+from customer.forms import UserAddForm
+from merchant.forms import MerchantProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
 def merchantsignup(request):
-    # form=UserAddForm()
-    merchant_form=MerchantProfileForm()
+    form=UserAddForm()
+    merchant_form = MerchantProfileForm()
     if request.method=="POST":
         form = UserAddForm(request.POST)
         if form.is_valid():
@@ -68,9 +71,11 @@ def merchantsignup(request):
                 return redirect('merchantsignin')
             else:
                 messages.success(request,"Couldn't perform  Signup")
+                print(form.errors)
+
         else:
             messages.error(request,"Error in merchant profile details.")
-    return render(request,"merchant/signup.html",{"form":form,"merchant_form ":merchant_form})
+    return render(request,"merchant/signup.html",{"form":form,"merchant_form":merchant_form})
 
 
 
@@ -89,7 +94,7 @@ def merchantsignin(request):
             login(request, user1)
             group = request.user.groups.all()[0].name
             if(group == "merchant"):
-                return redirect('turf_detail')
+                return redirect('product_detail')
             else:
                 messages.info(request,'Username or Password Incorrect')
                 return redirect("merchantsignout")
@@ -105,3 +110,50 @@ def merchantsignin(request):
 def merchantsignout(request):
     logout(request)
     return redirect('index')
+
+
+def deleteproduct(request,pk):
+    edit=ProductList.objects.get(Product_ID=pk)
+    edit.delete()
+    messages.info(request,"deleted")
+    return redirect("product_detail")
+
+
+Area_choices = (
+    ('con', 'con'),
+    ('electricals', 'electricals'),
+    ('plumbing', 'plumbing'),
+    ('interior', 'interior'),
+    ('paint', 'paint'),
+    ('courtyard', 'courtyard'),
+)
+
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductDetailsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Successfully Added")
+            return redirect('product_detail')
+    else:
+        form = ProductDetailsForm()
+
+    return render(request, "merchant/add_product.html", {'form': form, 'Area_choices': Area_choices})
+
+
+
+def edit_product(request,pid):
+    edit_product=ProductList.objects.get( Product_ID=pid)
+    if request.method == "POST":
+        edit_product.Product_name=request.POST["Product_name"]
+        edit_product.Product_address=request.POST["Product_address"]
+        edit_product.Product_price=request.POST["Product_price"]
+        edit_product.Product_caption=request.POST["Product_caption"]
+        if "Product_image" in request.FILES:
+            edit_product.Product_image=request.FILES["Product_image"]
+        edit_product.save()
+        return redirect("product_detail")
+    return render(request,"manager\edit_product.html",{"edit_product":edit_product}) 
+from django.shortcuts import render, get_object_or_404
+from .models import ManagerProfile

@@ -9,8 +9,8 @@ from django.forms import TextInput,ModelForm,DateInput
 
 class UserAddForm(UserCreationForm):
     class Meta:
-        model = User
-        fields = ["username", "email", "password1", "password2"]
+        model =User
+        fields = ["first_name","username", "email", "password1", "password2"]
         widgets = {
             'username': TextInput(attrs={"class": "form-control"}),
             'email': TextInput(attrs={"class": "form-control"}),
@@ -20,3 +20,7 @@ class UserAddForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields["password1"].widget.attrs.update({"class": "form-control"})
         self.fields["password2"].widget.attrs.update({"class": "form-control"})
+
+
+
+
