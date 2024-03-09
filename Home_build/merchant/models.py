@@ -18,7 +18,7 @@ class MerchantProfile(models.Model):
 
 
 Area_choices = (
-    ('con', 'con'),
+    ('construction', 'construction'),
     ('electricals', 'electricals'),
     ('plumbing', 'plumbing'),
     ('interior', 'interior'),
@@ -33,6 +33,6 @@ class ProductList(models.Model):
     Product_price=models.CharField(max_length=200)
     Product_caption=models.CharField(max_length=200)
     Product_image=models.ImageField(null=True ,blank=True,upload_to="product_img")
-    Product_area=models.CharField(max_length=200,choices=Area_choices,default='con')
+    Product_area=models.CharField(max_length=200,choices=Area_choices,default='construction')
 
 

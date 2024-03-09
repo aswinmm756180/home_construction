@@ -3,7 +3,7 @@
 {% block content %}
 
 <style>
-    .reg_btn{
+    .reg_btn {
         background-color: black;
         color: rgb(248, 175, 40);
         border-radius: 5px;
@@ -13,17 +13,19 @@
         font-size: 20px;
         font-weight: bold;
     }
-    .reg_btn:hover{
+
+    .reg_btn:hover {
         background-color: rgb(248, 175, 40);
         color: black;
     }
 
-    .log_btn{
-        text-align: center; 
+    .log_btn {
+        text-align: center;
         /* margin-left: 80px;  */
         color: rgb(71, 71, 71);
     }
-    .log_btn:hover{
+
+    .log_btn:hover {
         color: rgb(238, 174, 12);
     }
 </style>
@@ -43,10 +45,10 @@
 {% endfor %}
 
 {% for message in messages %}
-    <div class="alert alert-dark" role="alert" id="alertBox">
-        <h6>{{ message.message }}</h6>
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
+<div class="alert alert-dark" role="alert" id="alertBox">
+    <h6>{{ message.message }}</h6>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
 {% endfor %}
 {% if form.errors %}
 <div class="alert alert-danger">
@@ -82,11 +84,12 @@
                     </div>
                     {% endfor %}
                 </div>
-                
+
                 <div class="text-center mt-3">
-                    <button type="submit" class="reg_btn" >Register As a Merchant</button>
+                    <button type="submit" class="reg_btn">Register As a Merchant</button>
                 </div>
-                <h5 class="log_btn text-end mt-4" style="color: rgb(11, 12, 10); text-align: center;"><a href="{%url 'merchantsignin' %}" class="text-muted" >Sign in As Merchant</a></h5>
+                <h5 class="log_btn text-end mt-4" style="color: rgb(11, 12, 10); text-align: center;"><a
+                        href="{%url 'merchantsignin' %}" class="text-muted">Sign in As Merchant</a></h5>
             </form>
         </div>
     </section>

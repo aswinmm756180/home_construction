@@ -40,6 +40,7 @@ from merchant.forms import MerchantProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
+
 def merchantsignup(request):
     form=UserAddForm()
     merchant_form = MerchantProfileForm()
@@ -120,7 +121,7 @@ def deleteproduct(request,pk):
 
 
 Area_choices = (
-    ('con', 'con'),
+    ('construction', 'construction'),
     ('electricals', 'electricals'),
     ('plumbing', 'plumbing'),
     ('interior', 'interior'),
@@ -141,10 +142,11 @@ def add_product(request):
 
     return render(request, "merchant/add_product.html", {'form': form, 'Area_choices': Area_choices})
 
+from django.urls import reverse
+from django.shortcuts import render
 
-
-def edit_product(request,pid):
-    edit_product=ProductList.objects.get( Product_ID=pid)
+def edit_product(request,tid):
+    edit_product=ProductList.objects.get( Product_ID=tid)
     if request.method == "POST":
         edit_product.Product_name=request.POST["Product_name"]
         edit_product.Product_address=request.POST["Product_address"]
@@ -154,6 +156,7 @@ def edit_product(request,pid):
             edit_product.Product_image=request.FILES["Product_image"]
         edit_product.save()
         return redirect("product_detail")
-    return render(request,"manager\edit_product.html",{"edit_product":edit_product}) 
-from django.shortcuts import render, get_object_or_404
-from .models import ManagerProfile
+    return render(request,"merchant\edit_product.html",{"edit_product":edit_product}) 
+
+
+

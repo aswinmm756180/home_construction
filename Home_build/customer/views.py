@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import UserAddForm
 from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from merchant.models import ProductList
 from django.contrib.auth import login
 
 # Create your views here.
@@ -17,6 +18,17 @@ def contact(request):
 
 def service(request):
     return render(request,"service.html")
+
+
+def viewpage(request):
+    return render(request,"user/viewpage.html")
+
+
+
+def view_detail(request,Product_ID):
+    product=get_object_or_404(ProductList,pk=Product_ID)
+    return render(request,"user/view_product.html",{'product':product})
+
 
 
 def register(request):
@@ -45,7 +57,7 @@ def user_login(request):
             request .session["username"]=username
             request .session["password"]=password
             login(request,user)
-            return redirect("category")
+            return redirect("viewpage")
         else:
             
             messages.info(request,"Username or Password Incorrect")
@@ -60,8 +72,8 @@ def signout(request):
 
 
 
-def category(request):
-    return render(request,'user/viewpage.html')
+# def category(request):
+#     return render(request,'user/viewpage.html')
 
 
 
@@ -70,7 +82,7 @@ def category(request):
 # category selection
 
 Area_choices = (
-    ('con', 'con'),
+    ('construction', 'construction'),
     ('electricals', 'electricals'),
     ('plumbing', 'plumbing'),
     ('interior', 'interior'),
@@ -79,15 +91,15 @@ Area_choices = (
 )
 
 
-# def location_view(request, loc_code):
-#     location_turfs = []
-#     context = {}  # Initialize context outside the loop
+def location_view(request, loc_code):
+    location_products = []
+    context = {}  # Initialize context outside the loop
 
-#     for code, name in Area_choices:
-#         if code == loc_code:
-#             turfs = TurfList.objects.filter(Turf_area=code)
-#             location_turfs.append({'location_name': name, 'turfs': turfs})
-#             break
+    for code, name in Area_choices:
+        if code == loc_code:
+            products = ProductList.objects.filter(Product_area=code)
+            location_products.append({'location_name': name, 'products': products})
+            break
 
-#     context['location_turfs'] = location_turfs
-#     return render(request, 'location_turf.html', context)
+    context['location_products'] = location_products
+    return render(request, 'user/location_product.html', context)

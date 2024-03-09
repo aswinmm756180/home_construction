@@ -107,16 +107,17 @@
                         <div class="ml-auto">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Bookings</button>
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage
+                                    Bookings</button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{%url 'product_detail' %}">View Product</a>
-                                    <a class="dropdown-item" href="{%url 'add_product' %}"
-                                        style="color: black;">Add Product</a>
-                                    <a class="dropdown-item" href="{%url 'admin_signin' %}" style="color: black;">Bookings</a>
+                                    <a class="dropdown-item" href="{%url 'add_product' %}" style="color: black;">Add
+                                        Product</a>
+                                    <a class="dropdown-item" href="{%url 'admin_signin' %}"
+                                        style="color: black;">Bookings</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </nav>
             </div>
@@ -138,19 +139,20 @@
                 <div class="col-lg my-2">
                     <div class="card" style="width: 20rem;">
                         {%if product.Product_image %}
-                        <img src="{{ product.Product_image.url }}" class="card-img-top" alt="turf" style="height: 250px;">
+                        <img src="{{ Product.Product_image.url }}" class="card-img-top" alt="product"
+                            style="height: 250px;">
                         {% endif %}
                         <div class="card-body">
                             <p class="card-text"
                                 style="color: darkgreen; font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;">
-                                {{product.product_name}}</p>
+                                {{product.Product_name}}</p>
                             <h5 class="card-title">{{product.Product_caption}}</h5>
                             <p class="card-text">{{product.Product_price}}</p>
                             <p class="card-text">{{product.Product_area}}</p>
-                            <a href="{%url 'deleteturf' turf.Turf_ID %}"
+                            <a href="{%url 'deleteproduct' product.Product_ID %}"
                                 onclick="return confirm('Are you sure want to delete?')"><i class="fa fa-trash"
                                     style='font-size:30px; color: #000;'></i></a>
-                            <a href="{%url 'edit_turf'  turf.Turf_ID %}"><i class='fas fa-edit'
+                            <a href="{%url 'edit_product'  product.Product_ID %}"><i class='fas fa-edit'
                                     style='font-size:30px; color: #000;'></i></a>
 
                         </div>
@@ -242,5 +244,4 @@
     <!-- Template Javascript -->
     <script src="{%static 'js/main.js' %}"></script>
 </body>
-
 </html>

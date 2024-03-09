@@ -1,0 +1,363 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Builderz - Construction Company </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Construction Company Website Template" name="keywords">
+  <meta content="Construction Company Website Template" name="description">
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Libraries -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="{%static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+  <link href="{%static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{%static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+  <link href="{%static 'lib/slick/slick.css' %}" rel="stylesheet">
+  <link href="{%static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="{%static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-12">
+            <div class="logo">
+              <a href="index.html">
+                <h2>Home Builderz</h2>
+                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-7 d-none d-lg-block">
+            <div class="row">
+              <div class="col-4">
+                <div class="top-bar-item">
+                  <div class="top-bar-icon">
+                    <i class="flaticon-calendar"></i>
+                  </div>
+                  <div class="top-bar-text">
+                    <h3>Opening Hour</h3>
+                    <p>Mon - Fri, 8:00 - 9:00</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="top-bar-item">
+                  <div class="top-bar-icon">
+                    <i class="flaticon-call"></i>
+                  </div>
+                  <div class="top-bar-text">
+                    <h3>Call Us</h3>
+                    <p>+012 345 6789</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="top-bar-item">
+                  <div class="top-bar-icon">
+                    <i class="flaticon-send-mail"></i>
+                  </div>
+                  <div class="top-bar-text">
+                    <h3>Email Us</h3>
+                    <p>info@example.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+          <a href="#" class="navbar-brand">MENU</a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav mr-auto">
+              <a href="{%url 'index' %}" class="nav-item nav-link active">Home</a>
+              <a href="{%url 'about' %}" class="nav-item nav-link">About</a>
+              <a href="{%url 'service' %}" class="nav-item nav-link">Service</a>
+
+
+              <a href="{%url 'contact' %}" class="nav-item nav-link">Contact</a>
+            </div>
+            <div class="ml-auto">
+              <a class="btn" href="{%url 'signout' %}">Signout</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Nav Bar End -->
+
+
+
+
+    <!-- <p>View product by your preferable location</p> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha384-kmS5oP4UDtVd0ZnzW0uW5fV5q7pNB8O9aTfAJVAW9WQLA0aPee5+UqXrfP1SMbp" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@700&display=swap" rel="stylesheet">
+    <h1 class="mt-5 display-5 text-capitalize text-center">
+      <span class="text-primary text-center">Get</span> Details
+    </h1>
+    
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-lg my-2 d-flex align-items-center">
+          {% if product.Product_image %}
+          <img src="{{ product.Product_image.url }}" class="img-fluid" alt="Product Image"
+            style="max-height: 300px; width: 50%;">
+          {% endif %}
+          <div class="text-center ml-5">
+            <p
+              style="color: darkgreen; font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;">
+              {{product.Product_name}}</p>
+            <h5>{{product.Product_caption}}</h5>
+            <p>Price :₹{{product.Product_price}}</p>
+            <p>Address :{{product.Product_address}}</p>
+            <p>Area :{{product.Product_area}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% load tz %}
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+
+      .book_form {
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        padding: 10px;
+        max-width: 500px;
+        margin: auto;
+        /* Center horizontally */
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      select,
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #282d32;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0e1011;
+      }
+
+      .alert {
+        position: fixed;
+        z-index: 90;
+        right: 80px;
+        top: 10px;
+      }
+    </style>
+    <h1 class="mt-5 display-5 text-capitalize text-center">
+      <span class="text-primary text-center">Book For</span> {{ product.Product_name }} Product
+    </h1>
+
+    <br><br>
+
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show" style="position: fixed;z-index: 90;right:80px;top:30px"
+      role="alert">
+      <strong>{{ error_message }} !!!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+    <div class="book_form justify-content-center align-items-center"
+      style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; padding: 10px; max-width: 500px;">
+      <form method="post" action="{% url 'book_product' product.Product_ID %}">
+        {% csrf_token %}
+
+        <label for="id_game">Location:</label>
+        <select name="game" id="id_game">
+          <option value="cricket">Thiruvananthapuram</option>
+          <option value="football">Kollam</option>
+          <option value="badminton">Alappuzha</option>
+          <option value="fitness">Pathanamthitta</option>
+          <option value="coaching">Kottayam</option>
+          <option value="coaching">Idukki</option>
+          <option value="coaching">Ernakulam</option>
+          <option value="coaching">Thrissur</option>
+          <option value="coaching">Palakkad</option>
+          <option value="coaching">Malappuram</option>
+          <option value="coaching">Kozhikode</option>
+          <option value="coaching">Wayanad</option>
+          <option value="coaching">Kannur</option>
+          <option value="coaching">Kasaragod</option>
+        </select>
+        <br>
+        <label for="id_date">Date:</label>
+        <input type="date" name="date" id="id_date" required>
+        <br>
+        <label for="id_quantity">Quantity:</label>
+        <input type="number" name="" id="id_quantity" required>
+
+        <br>
+
+        <label for="id_address">Address:</label>
+        <input type="text" name="" id="id_address" required>
+
+        <br>
+
+        <label for="id_phone_number">Phone Number:</label>
+        <input type="text" name="phone_number" id="id_phone_number" required>
+
+        <br>
+
+
+
+        <button type="submit">Order Now</button>
+      </form>
+    </div>
+    <!-- <script>
+      // Get the current timezone offset and set it as the value of the hidden input
+      document.getElementById('timezone_offset').value = new Date().getTimezoneOffset();
+    </script> -->
+
+
+
+
+
+
+
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <div class="footer-contact">
+              <h2>Office Contact</h2>
+              <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+              <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
+              <p><i class="fa fa-envelope"></i>info@example.com</p>
+              <div class="footer-social">
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="footer-link">
+              <h2>Services Areas</h2>
+              <a href="">Building Construction</a>
+              <a href="">House Renovation</a>
+              <a href="">Architecture Design</a>
+              <a href="">Interior Design</a>
+              <a href="">Painting</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="footer-link">
+              <h2>Useful Pages</h2>
+              <a href="">About Us</a>
+              <a href="">Contact Us</a>
+              <a href="">Our Team</a>
+              <a href="">Projects</a>
+              <a href="">Testimonial</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container footer-menu">
+        <div class="f-menu">
+          <a href="">Terms of use</a>
+          <a href="">Privacy policy</a>
+          <a href="">Cookies</a>
+          <a href="">Help</a>
+          <a href="">FQAs</a>
+        </div>
+      </div>
+      <div class="container copyright">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+          </div>
+          <div class="col-md-6">
+            <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="{%static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{%static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{%static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{%static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{%static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+  <script src="{%static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{%static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{%static 'lib/slick/slick.min.js' %}"></script>
+
+  <!-- Template Javascript -->
+  <script src="{%static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -9,5 +9,7 @@ urlpatterns=[
     path('register',views.register,name="register"),
     path('user_login',views.user_login,name="user_login"),
     path('signout',views.signout,name="signout"),
-    path('category',views.category,name="category"),
+    path('viewpage/',views.viewpage,name="viewpage"),
+    path('category/<str:loc_code>/',views.location_view,name='location_view'),
+    path('view_detail/<int:Product_ID>/',views.view_detail,name="view_detail"),
 ]

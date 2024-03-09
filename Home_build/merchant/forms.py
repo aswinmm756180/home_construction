@@ -13,7 +13,7 @@ class MerchantProfileForm(ModelForm):
             'Phone_Number': NumberInput(attrs={"class":"form-control","placeholder":"Enter Phone number"}),
             'Designation': TextInput(attrs={"class":"form-control","placeholder":"Enter  Your Designation"}),
             'Address': Textarea(attrs={"class":"form-control","placeholder":"Enter  Address"}),
-            'Company_Name': Textarea(attrs={"class":"form-control","placeholder":"Enter  Your Educational Qualification"}),
+            'Company_Name': Textarea(attrs={"class":"form-control","placeholder":"Enter  Your Compant Name"}),
         }
         
 
