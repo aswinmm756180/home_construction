@@ -138,7 +138,6 @@ def book_product(request, product_id):
             phone_number=phone_number,
         )
         booking.save()
-
         return redirect('booking_details')  # Redirect to the booking details page
 
     return render(request, 'user_booking.html', {'product': product})

@@ -149,7 +149,7 @@ def edit_product(request,tid):
     edit_product=ProductList.objects.get( Product_ID=tid)
     if request.method == "POST":
         edit_product.Product_name=request.POST["Product_name"]
-        edit_product.Product_address=request.POST["Product_address"]
+        # edit_product.Product_address=request.POST["Product_address"]
         edit_product.Product_price=request.POST["Product_price"]
         edit_product.Product_caption=request.POST["Product_caption"]
         if "Product_image" in request.FILES:

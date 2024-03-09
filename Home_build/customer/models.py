@@ -24,8 +24,8 @@ class Booking(models.Model):
         ('Kannur', 'Kannur'),
         ('Kasaragod', 'Kasaragod'),
     ]
-    game = models.CharField(max_length=20, choices=game_choices, default='Football')
-    quantity = models.DateTimeField(null=True)
-    address = models.DateTimeField(null=True)
+    game = models.CharField(max_length=20, choices=game_choices, default='Thiruvananthapuram')
+    quantity = models.IntegerField(null=True)
+    address = models.CharField(max_length=150)
     date = models.DateField(null=True)
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.IntegerField(null=True)
