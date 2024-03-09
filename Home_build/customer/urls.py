@@ -12,4 +12,7 @@ urlpatterns=[
     path('viewpage/',views.viewpage,name="viewpage"),
     path('category/<str:loc_code>/',views.location_view,name='location_view'),
     path('view_detail/<int:Product_ID>/',views.view_detail,name="view_detail"),
+    path('booking/', views.booking_details, name='booking_details'),
+    path('book_product/<int:product_id>/', views.book_product, name='book_product'),
+    path('cancel_booking/<int:booking_id>/', views.cancel_booking, name='cancel_booking'),
 ]

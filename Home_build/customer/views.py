@@ -103,3 +103,48 @@ def location_view(request, loc_code):
 
     context['location_products'] = location_products
     return render(request, 'user/location_product.html', context)
+
+from .models import Booking
+
+def booking_details(request):
+    bookings = Booking.objects.filter()
+    return render(request, 'user/my_booking.html', {'bookings': bookings})
+
+
+
+
+def book_product(request, product_id):
+    product = get_object_or_404(ProductList, Product_ID=product_id)
+    if request.method == 'POST':
+        game = request.POST.get('game')
+        date = request.POST.get('date')
+        quantity = request.POST.get('quantity')
+        address = request.POST.get('address')
+        phone_number = request.POST.get('phone_number')
+
+        # Check if the selected time slot is already booked for the same game and date
+        if Booking.objects.filter(product=product, game=game, date=date, quantity__lt=quantity, address__gt=address).exists():
+            error_message = 'This time slot is already booked. Please select another slot.'
+            return render(request, 'view_product.html', {'product': product, 'error_message': error_message})
+
+        # Create a Booking instance
+        booking = Booking(
+            user=request.user,
+            product=product,
+            game=game,
+            quantity=quantity,
+            address=address,
+            date=date,
+            phone_number=phone_number,
+        )
+        booking.save()
+
+        return redirect('booking_details')  # Redirect to the booking details page
+
+    return render(request, 'user_booking.html', {'product': product})
+
+
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.delete()
+    return redirect('booking_details')

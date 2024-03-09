@@ -222,7 +222,7 @@
     {% endif %}
     <div class="book_form justify-content-center align-items-center"
       style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; padding: 10px; max-width: 500px;">
-      <form method="post" action="{% url 'book_product' product.Product_ID %}">
+      <form method="post" action="">
         {% csrf_token %}
 
         <label for="id_game">Location:</label>
@@ -247,12 +247,12 @@
         <input type="date" name="date" id="id_date" required>
         <br>
         <label for="id_quantity">Quantity:</label>
-        <input type="number" name="" id="id_quantity" required>
+        <input type="number" name="quantity" id="id_quantity" required>
 
         <br>
 
         <label for="id_address">Address:</label>
-        <input type="text" name="" id="id_address" required>
+        <input type="text" name="address" id="id_address" required>
 
         <br>
 
