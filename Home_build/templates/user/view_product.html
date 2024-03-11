@@ -125,16 +125,17 @@
     <h1 class="mt-5 display-5 text-capitalize text-center">
       <span class="text-warning text-center">Get</span> Details
     </h1>
-    
+
     <div class="container mt-3">
       <div class="row">
         <div class="col-lg my-2 d-flex align-items-center">
-         
+
           <img src="{{ product.Product_image.url }}" class="img-fluid" alt="Product Image"
             style="max-height: 300px; width: 50%;">
-          
+
           <div class="text-center ml-5">
-            <p style="font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;" class="text-warning">
+            <p style="font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;"
+              class="text-warning">
               {{product.Product_name}}</p>
             <h5>{{product.Product_caption}}</h5>
             <p style="color: #0e1011;">Price :₹{{product.Product_price}}</p>
@@ -204,7 +205,7 @@
       }
     </style>
     <h1 class="mt-5 display-5 text-capitalize text-center">
-      <span class="text-warning text-center">Book Your</span> {{ product.Product_name }} 
+      <span class="text-warning text-center">Book Your</span> {{ product.Product_name }}
     </h1>
 
     <br><br>
@@ -225,20 +226,19 @@
 
         <label for="id_game">Location:</label>
         <select name="game" id="id_game">
-          <option value="cricket">Thiruvananthapuram</option>
-          <option value="football">Kollam</option>
-          <option value="badminton">Alappuzha</option>
-          <option value="fitness">Pathanamthitta</option>
-          <option value="coaching">Kottayam</option>
-          <option value="coaching">Idukki</option>
-          <option value="coaching">Ernakulam</option>
-          <option value="coaching">Thrissur</option>
-          <option value="coaching">Palakkad</option>
-          <option value="coaching">Malappuram</option>
-          <option value="coaching">Kozhikode</option>
-          <option value="coaching">Wayanad</option>
-          <option value="coaching">Kannur</option>
-          <option value="coaching">Kasaragod</option>
+          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+          <option value="Kollam">Kollam</option>
+          <option value="Alappuzha">Alappuzha</option>
+          <option value="Pathanamthitta">Pathanamthitta</option>
+          <option value="Kottayam">Kottayam</option>
+          <option value="Ernakulam">Ernakulam</option>
+          <option value="Thrissur">Thrissur</option>
+          <option value="Palakkad">Palakkad</option>
+          <option value="Malappuram">Malappuram</option>
+          <option value="Kozhikode">Kozhikode</option>
+          <option value="Wayanad">Wayanad</option>
+          <option value="Kannur">Kannur</option>
+          <option value="Kasaragod">Kasaragod</option>
         </select>
         <br>
         <label for="id_date">Date:</label>
@@ -263,6 +263,9 @@
 
         <button type="submit">Order Now</button>
       </form>
+
+
+
     </div>
     <!-- <script>
       // Get the current timezone offset and set it as the value of the hidden input

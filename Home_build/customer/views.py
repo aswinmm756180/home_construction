@@ -115,9 +115,7 @@ def booking_details(request):
 from django.shortcuts import render, redirect, get_object_or_404
 from customer.models import Booking  # Import your Booking model
 from merchant.models import ProductList  # Import your ProductList model
-from django.contrib.auth.decorators import login_required  # Import login_required decorator
 
-@login_required
 def book_product(request, product_id):
     selected_product = get_object_or_404(ProductList, id=product_id)
     if request.method == 'POST':
@@ -141,16 +139,6 @@ def book_product(request, product_id):
         return redirect('booking_details')  # Redirect to the booking details page
 
     return render(request, 'user/view_product.html', {'product': selected_product})
-
-
-
-
-
-# def book_product(request, product_id):
-#     disp=Booking.objects.all()
-#     return render(request,'my_booking.html',{'Bookings':disp})
-
-
 
 
 
