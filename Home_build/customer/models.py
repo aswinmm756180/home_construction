@@ -1,8 +1,12 @@
 from django.db import models
 from merchant.models import MerchantProfile,ProductList
 from django.contrib.auth.models import User
+from .models import ProductList
+
 
 # Create your models here.
+
+
 
 
 class Booking(models.Model):
@@ -25,7 +29,10 @@ class Booking(models.Model):
         ('Kasaragod', 'Kasaragod'),
     ]
     game = models.CharField(max_length=20, choices=game_choices, default='Thiruvananthapuram')
-    quantity = models.IntegerField(null=True)
+    quantity = models.IntegerField()
     address = models.CharField(max_length=150)
-    date = models.DateField(null=True)
-    phone_number = models.IntegerField(null=True)
+    date = models.DateField()
+    phone_number = models.CharField(max_length=15)  # Changed from IntegerField to CharField
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name} - {self.game}"
