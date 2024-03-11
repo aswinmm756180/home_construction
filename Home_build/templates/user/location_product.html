@@ -125,7 +125,7 @@
 
         {% for location in location_products %}
         <h1 class="mt-5 display-5 text-capitalize text-center">
-            <span class="text-primary text-center">Get</span> locations from {{ location.location_name }}
+            <span class="text-warning text-center">Get</span> Products from {{ location.location_name }}
         </h1>
 
         {% if location.products %}
@@ -139,13 +139,13 @@
                             style="height: 250px;">
                         {% endif %}
                         <div class="card-body">
-                            <p class="card-text"
-                                style="color: darkgreen; font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;">
+                            <p class="card-text text-warning"
+                                style="font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;">
                                 {{ product.Product_name }}
                             </p>
                             <h5 class="card-title">{{ product.Product_caption }}</h5>
                             <p class="card-text">{{ product.Product_price }}</p>
-                            <a href="{%url 'view_detail' product.Product_ID %}" class="btn btn-secondary">View
+                            <a href="{%url 'view_detail' product.Product_ID %}" class="btn btn-warning">View
                                 Products</a>
                         </div>
                     </div>

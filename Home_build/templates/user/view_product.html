@@ -123,7 +123,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@700&display=swap" rel="stylesheet">
     <h1 class="mt-5 display-5 text-capitalize text-center">
-      <span class="text-primary text-center">Get</span> Details
+      <span class="text-warning text-center">Get</span> Details
     </h1>
     
     <div class="container mt-3">
@@ -134,13 +134,11 @@
             style="max-height: 300px; width: 50%;">
           
           <div class="text-center ml-5">
-            <p
-              style="color: darkgreen; font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;">
+            <p style="font-family: 'Edu TAS Beginner', cursive; font-size: 2rem; text-transform: capitalize;" class="text-warning">
               {{product.Product_name}}</p>
             <h5>{{product.Product_caption}}</h5>
-            <p>Price :₹{{product.Product_price}}</p>
-            <p>Address :{{product.Product_address}}</p>
-            <p>Area :{{product.Product_area}}</p>
+            <p style="color: #0e1011;">Price :₹{{product.Product_price}}</p>
+            <p>Category :{{product.Product_area}}</p>
           </div>
         </div>
       </div>
@@ -206,7 +204,7 @@
       }
     </style>
     <h1 class="mt-5 display-5 text-capitalize text-center">
-      <span class="text-primary text-center">Book For</span> {{ product.Product_name }} Product
+      <span class="text-warning text-center">Book Your</span> {{ product.Product_name }} 
     </h1>
 
     <br><br>

@@ -104,43 +104,54 @@ def location_view(request, loc_code):
     context['location_products'] = location_products
     return render(request, 'user/location_product.html', context)
 
-from .models import Booking
+from customer.models import Booking
 
 def booking_details(request):
-    bookings = Booking.objects.filter()
+    bookings = Booking.objects.filter(user=request.user)
     return render(request, 'user/my_booking.html', {'bookings': bookings})
 
 
 
+from django.shortcuts import render, redirect, get_object_or_404
+from customer.models import Booking  # Import your Booking model
+from merchant.models import ProductList  # Import your ProductList model
+from django.contrib.auth.decorators import login_required  # Import login_required decorator
 
+@login_required
 def book_product(request, product_id):
-    product = get_object_or_404(ProductList, Product_ID=product_id)
+    selected_product = get_object_or_404(ProductList, id=product_id)
     if request.method == 'POST':
-        game = request.POST.get('game')
-        date = request.POST.get('date')
-        quantity = request.POST.get('quantity')
-        address = request.POST.get('address')
-        phone_number = request.POST.get('phone_number')
-
-        # Check if the selected time slot is already booked for the same game and date
-        if Booking.objects.filter(product=product, game=game, date=date, quantity__lt=quantity, address__gt=address).exists():
-            error_message = 'This time slot is already booked. Please select another slot.'
-            return render(request, 'view_product.html', {'product': product, 'error_message': error_message})
+        game1 = request.POST.get('game')
+        date1 = request.POST.get('date')
+        quantity1 = request.POST.get('quantity')
+        address1 = request.POST.get('address')
+        phone_number1 = request.POST.get('phone_number')
 
         # Create a Booking instance
         booking = Booking(
             user=request.user,
-            product=product,
-            game=game,
-            quantity=quantity,
-            address=address,
-            date=date,
-            phone_number=phone_number,
+            product=selected_product,
+            game=game1,
+            date=date1,
+            quantity=quantity1,
+            address=address1,
+            phone_number=phone_number1,
         )
         booking.save()
         return redirect('booking_details')  # Redirect to the booking details page
 
-    return render(request, 'user_booking.html', {'product': product})
+    return render(request, 'user/view_product.html', {'product': selected_product})
+
+
+
+
+
+# def book_product(request, product_id):
+#     disp=Booking.objects.all()
+#     return render(request,'my_booking.html',{'Bookings':disp})
+
+
+
 
 
 def cancel_booking(request, booking_id):
